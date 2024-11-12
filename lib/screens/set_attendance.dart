@@ -1,5 +1,6 @@
 import 'package:attendance/screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SetAttendance extends StatefulWidget {
@@ -48,93 +49,80 @@ class _SetAttendanceState extends State<SetAttendance> {
   }
 
   void _markAttendance() async {
-    if (_selectedAttendanceStatus == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Row(
-            children: [
-              Icon(Icons.error_outline, color: Colors.white),
-              SizedBox(width: MediaQuery.of(context).size.height * 0.02),
-              Text('Please select attendance status'),
-            ],
-          ),
-          backgroundColor: Colors.red,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      );
-      return;
-    }
+  if (_selectedAttendanceStatus == null) {
+    Fluttertoast.showToast(
+      msg: "Please select attendance status",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+    return;
+  }
 
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        title: Row(
-          children: [
-            Icon(Icons.help_outline, color: Colors.blue),
-            SizedBox(width: MediaQuery.of(context).size.height * 0.01),
-            Text('Confirm Attendance', 
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      title: Row(
+        children: [
+          Icon(Icons.help_outline, color: Colors.blue),
+          SizedBox(width: MediaQuery.of(context).size.height * 0.01),
+          Text(
+            'Confirm Attendance', 
             style: TextStyle(
-              fontSize: MediaQuery.of(context).size.height * 0.025
-            ),),
-          ],
-        ),
-        content: Text(
-          'Are you sure you want to mark attendance for $_employeeName?',
-          style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.02),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              'No',
-              style: TextStyle(color: Colors.grey),
+              fontSize: MediaQuery.of(context).size.height * 0.025,
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Row(
-                    children: [
-                      Icon(Icons.check_circle, color: Colors.white),
-                      SizedBox(width: MediaQuery.of(context).size.height * 0.02),
-                      Text('Attendance marked successfully'),
-                    ],
-                  ),
-                  backgroundColor: Colors.green,
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              );
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-                (route) => false,
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: Text('Yes', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
-    );
-  }
+      content: Text(
+        'Are you sure you want to mark attendance for $_employeeName?',
+        style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.02),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text(
+            'No',
+            style: TextStyle(color: Colors.grey),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            Fluttertoast.showToast(
+              msg: "Attendance marked successfully",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Login()),
+              (route) => false,
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          child: Text('Yes', style: TextStyle(color: Colors.white)),
+        ),
+      ],
+    ),
+  );
+}
+
 
   
   @override
