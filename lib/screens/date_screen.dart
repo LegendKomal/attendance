@@ -1,4 +1,4 @@
-import 'package:attendance/screens/emp_list.dart';
+import 'package:attendmate/screens/emp_list.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 

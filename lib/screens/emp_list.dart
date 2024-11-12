@@ -1,4 +1,4 @@
-import 'package:attendance/screens/set_attendance.dart';
+import 'package:attendmate/screens/set_attendance.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

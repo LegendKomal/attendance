@@ -1,5 +1,5 @@
-import 'package:attendance/screens/login.dart';
-import 'package:attendance/screens/splashscreen.dart';
+import 'package:attendmate/screens/login.dart';
+import 'package:attendmate/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

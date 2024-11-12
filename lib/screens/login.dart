@@ -1,6 +1,5 @@
-import 'package:attendance/screens/date_screen.dart';
-import 'package:attendance/screens/emp_list.dart';
-import 'package:attendance/screens/signup.dart';
+import 'package:attendmate/screens/date_screen.dart';
+import 'package:attendmate/screens/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
