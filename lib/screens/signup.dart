@@ -54,14 +54,14 @@ class _SignupState extends State<Signup> {
               ),
             ),
           ),
-          // Centered sign-up form
+          
           Center(
             child: Padding(
               padding: EdgeInsets.all(screenWidth * 0.02),
               child: Form(
                 key: _formKey,
                 child: Container(
-                  width: screenWidth * 0.75,
+                  width: screenWidth * 0.9,
                   padding: EdgeInsets.all(screenWidth * 0.05),
                   decoration: BoxDecoration(
                     color: Colors.white,
